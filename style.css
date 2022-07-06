@@ -1,0 +1,349 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block
+}
+
+html {
+    height: 100%
+}
+
+body {
+    line-height: 1
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none
+}
+
+table {
+    border-spacing: 0
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(/fonts/Montserrat-Regular.ttf);
+}
+
+/* Жирный */
+@font-face {
+    font-family: 'Montserrat bold';
+    src: url(/fonts/Montserrat-Bold.ttf);
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+.content__wrapper {
+    margin: 0 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*HEADER --- start*/
+.header {
+    font-family: 'Montserrat bold';
+    background-color: #7444e6;
+    padding: 10px;
+    color: #FFF;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.header>h1 {
+    text-transform: uppercase;
+}
+/*HEADER --- end*/
+
+.init-data-table__wrapper {
+    margin-bottom: 30px;
+}
+
+.init-data-table__wrapper>h2,
+.output-data-table__wrapper>h2,
+.table3__wrapper>h2,
+.extra-options>h2 {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.output-data-table__wrapper {
+    margin-bottom: 30px;
+}
+
+/*TABLE --- start*/
+tbody {}
+
+.init-data-table {
+    margin-bottom: 20px;
+}
+
+.rad-cell-up-left {
+    overflow: hidden;
+    border-radius: 10px 0 0 0;
+}
+
+.rad-cell-up-right {
+    overflow: hidden;
+    border-radius: 0 10px 0 0;
+}
+
+.rad-cell-down-left {
+    overflow: hidden;
+
+    border-radius: 0 0 0 10px;
+}
+
+.rad-cell-down-right {
+    overflow: hidden;
+    border-radius: 0 0 10px 0;
+}
+
+td,
+th {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    padding: 5px 10px;
+    border: solid #000 1px;
+    vertical-align: middle;
+}
+
+th {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-headder-str>th:nth-child(n) {
+    background-color: #7444e6;
+    color: #FFF;
+}
+
+.cells-param,
+.cells-uom {
+    text-align: center;
+}
+
+.cells-param {
+    max-width: 350px;
+}
+
+.cells-itit-data {
+    position: relative;
+    padding: 0;
+}
+
+.itit-data__input {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    border: none;
+    text-align: center;
+}
+
+.empty-th {
+    padding: 10px;
+}
+/*TABLE --- end*/
+
+/*EXTRA OPTIONS --- start*/
+.extra-options__day {
+    text-align: center;
+    min-width: 160px;
+    height: 25px;
+    border: 2px solid #7444e6;
+    outline: none;
+    border-radius: 5px;
+}
+
+.button {
+    margin-left: 10px;
+    outline: none;
+    height: 30px;
+    text-align: center;
+    width: 130px;
+    border-radius: 40px;
+    background: #fff;
+    border: 2px solid #7444e6;
+    color: #7444e6;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.button:hover {
+    background-color: #7444e6;
+    color: #FFF;
+    transition: all 0.25s ease;
+}
+/*EXTRA OPTIONS --- end*/
+
+/*TABLE --- start*/
+.exclude,
+.cells-consumer,
+.cells-heat,
+.cells-year-gas,
+.cells-coef,
+.cells-hour-gas {
+    text-align: center;
+
+}
+.cells-consumer {
+    font-weight: bold;
+}
+/*TABLE --- end*/
+
+.canvas__big-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.canvas__wrapper {
+    min-width: 550px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.canvas__wrapper:nth-child(2n+1) {}
+
+.footer {
+    min-height: 30px;
+    background-color: #7444e6;
+    margin-top: 50px;
+}

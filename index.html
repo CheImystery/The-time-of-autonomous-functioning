@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Chart/Chart.css">
+    <title>Расчет динамической защиты</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Расчет динамической защиты</h1>
+    </header>
+    <div class="content__wrapper">
+
+        <div class="init-data-table__wrapper">
+            <h2>Исходные данные</h2>
+            <table class="init-data-table">
+                <tr class="table-headder-str">
+                    <th class="rad-cell-up-left">Параметр</th>
+                    <th>Значение</th>
+                    <th class="rad-cell-up-right">Единица измерения</th>
+                </tr>
+                <tr>
+                    <th colspan="3">Состав топлива</th>
+                </tr>
+                <tr>
+                    <td class="cells-param">Метан, CH<sub>4</sub></td>
+                    <td class="cells-itit-data"><input class="itit-data__input inputGas" type="number" value="99.8"></td>
+                    <td class="cells-uom">об,%</td>
+                </tr>
+                <tr>
+                    <td class="cells-param">Этан, C<sub>2</sub>H<sub>6</sub></td>
+                    <td class="cells-itit-data"><input class="itit-data__input inputGas" type="number" value="0.07"></td>
+                    <td class="cells-uom">об,%</td>
+                </tr>
+                <tr>
+                    <td class="cells-param">Азот, N<sub>2</sub></td>
+                    <td class="cells-itit-data"><input class="itit-data__input inputGas" type="number" value="0.13"></td>
+                    <td class="cells-uom">об,%</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Параметры военных объектов</th>
+                </tr>
+                <tr>
+                    <td class="cells-param">Население, N</td>
+                    <td class="cells-itit-data"><input class="itit-data__input" type="number" value="1000"></td>
+                    <td class="cells-uom">чел.</td>
+                </tr>
+                <tr>
+                    <td class="cells-param">Доля личного состава, охваченного централизованным горячим водоснабжением,
+                        Z<sub>1</sub></td>
+                    <td class="cells-itit-data"><input class="itit-data__input inputParamZ" type="number" value="80">
+                    </td>
+                    <td class="cells-uom">%</td>
+                </tr>
+                <tr>
+                    <td class="cells-param">Доля личного состава, имеющего в квартирах водонагреватели, Z<sub>2</sub>
+                    </td>
+                    <td class="cells-itit-data"><input class="itit-data__input inputParamZ" type="number" value="20">
+                    </td>
+                    <td class="cells-uom">%</td>
+                </tr>
+                <tr>
+                    <td class="cells-param">Доля личного состава, проживающего в квартирах без горячего водоснабжения и
+                        водонагревателей, Z<sub>3</sub></td>
+                    <td class="cells-itit-data" id="cells-itit-data"><input class="itit-data__input inputParamZ"
+                            type="number" value="0" readonly></td>
+                    <td class="cells-uom">%</td>
+                </tr>
+                <tr>
+                    <td class="cells-param rad-cell-down-left">Процент охвата населения газоснабжением, Y<sub>к</sub>
+                    </td>
+                    <td class="cells-itit-data"><input class="itit-data__input inputParamY" type="number" value="100"
+                            readonly></td>
+                    <td class="cells-uom rad-cell-down-right">%</td>
+                </tr>
+            </table>
+            <div class="extra-options">
+                <h2>Режим автономного функционирования</h2>
+                <input class="extra-options__day" type="number" placeholder="Колличество суток" min="0" max="45">
+                <button type="submit" class="button extra-options__calc"><span>Рассчитать</span> </button>
+
+            </div>
+        </div>
+        <div class="output-data-table__wrapper">
+            <h2>Выходные данные</h2>
+            <table class="init-data-table">
+                <tr class="table-headder-str">
+                    <th class="rad-cell-up-left">
+                        Обеспечение газоснабжением
+                    </th>
+                    <th>
+                        Потребитель
+                    </th>
+                    <th>
+                        Годовой расход тепла, Q, МДж/год
+                    </th>
+                    <th>
+                        Годовой расход газа, V, м<sup>3</sup>/год
+                    </th>
+                    <th>
+                        Коэффициент часового максимума, К<sub>m</sub>
+                    </th>
+                    <th class="rad-cell-up-right">
+                        Расчётный расход газа, V<sub>р</sub>, м<sup>3</sup>/ч
+                    </th>
+                </tr>
+                <tr class="barracks output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Квартиры</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+
+                </tr>
+                <tr class="headquarters output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Штаб</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="communication output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Узел связи</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="laundry output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Прачечная</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="bathhouse output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Баня</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="canteen output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Столовая</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="medPoint output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Медицинской пункт</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="shop output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Солдатский магазин</td>
+                    <td class="-data cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+
+                <tr class="HWS output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">ГВС</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr class="heating-ventilation output-data-row">
+                    <td class="exclude">
+                        <input type="checkbox" checked="checked">
+                    </td>
+                    <td class="cells-consumer">Отопление и вентиляция</td>
+                    <td class="cells-heat"></td>
+                    <td class="cells-year-gas"></td>
+                    <td class="cells-coef"></td>
+                    <td class="cells-hour-gas"></td>
+                </tr>
+                <tr>
+                    <th class="empty-th" colspan="6"></th>
+                </tr>
+                <tr class="sum global-result-row" style="font-weight: bold">
+                    <td class="exclude rad-cell-down-left">
+
+                    </td>
+                    <td class="cells-consumer">Сумма</td>
+                    <td class="cells-heat cells-sum"></td>
+                    <td class="cells-year-gas cells-sum"></td>
+                    <td class="cells-coef cells-sum"></td>
+                    <td class="cells-hour-gas cells-sum rad-cell-down-right"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="table3__wrapper">
+            <h2>Расчет объема криогенных резервуаров СПГ</h2>
+            <table class="init-data-table">
+                <tr class="table-headder-str">
+                    <th class="rad-cell-up-left">Параметр</th>
+                    <th>Значение</th>
+                    <th class="rad-cell-up-right">Единица измерения</th>
+                </tr>
+
+                <tr>
+                    <td class="cells-param">Объем СПГ</td>
+                    <td class="V-table__data-cells"></td>
+                    <td class="cells-uom">м<sup>3</sup></td>
+                </tr>
+                <tr>
+                    <td class="cells-param">Количество резервуаров СПГ РЦВ-63/0.5</td>
+                    <td class="V-table__data-cells"></td>
+                    <td class="cells-uom">шт</td>
+                </tr>
+                <tr>
+                    <td class="cells-param rad-cell-down-left">Время автономного функционирования</td>
+                    <td class="V-table__data-cells"></td>
+                    <td class="cells-uom rad-cell-down-right">ч</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="canvas__big-wrapper">
+
+
+    </div>
+    <footer class="footer">
+
+    </footer>
+    <script src="Chart/Chart.js"></script>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
